@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  flatris:
+    build: .
+    container_name: flatris
+    ports:
+      - "3000:3000"
+    logging:
+       driver: "json-file"
+       options:
+           max-file: "5"
+           max-size: "10m"
