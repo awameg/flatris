@@ -1,0 +1,24 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag awameg/flatris:${GITHUB_SHA::8} --tag awameg/flatris:latest
+      
+    - name: docker login
+      run: docker login -u $GITHUB_ACTOR -p ${{secrets.DOCKER_PASSWORD}}
+    
+    - name: pushing docker image
+      run: docker push awameg/flatris:${GITHUB_SHA::8} && docker push awameg/flatris:latest

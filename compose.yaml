@@ -1,0 +1,17 @@
+version: "3.2"
+
+services:
+  
+  flatris:
+    restart: on-failure
+    image: awameg/flatris:latest
+    hostname: flatris
+    ports:
+      - 5000:5000
+  
+  nginx:
+    build: ./nginx
+    ports:
+    - 80:80
+    depends_on:
+    - flatris

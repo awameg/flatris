@@ -1,15 +1,10 @@
-FROM node
-
-RUN mkdir /app
+FROM node:14-alpine
 WORKDIR /app
 
-COPY package.json /app
-RUN yarn install
-
 COPY . /app
-
-RUN yarn build
+RUN yarn install &&\
+    yarn build
 
 EXPOSE 3000
 
-CMD yarn start
+CMD ["yarn", "start"]
