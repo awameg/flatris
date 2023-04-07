@@ -1,0 +1,22 @@
+version: "3.2"
+
+services:
+  
+  flatris:
+    restart: on-failure
+    build:
+      dockerfile: Dockerfile.multi
+      context: .
+      platforms:
+        - linux/amd64
+        - linux/arm/v7
+    hostname: flatris
+    ports:
+      - 3000:3000
+  
+  nginx:
+    build: ./nginx
+    ports:
+    - 808282:80
+    depends_on:
+    - flatris
