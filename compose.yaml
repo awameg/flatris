@@ -4,7 +4,7 @@ services:
   
   flatris:
     restart: on-failure
-    image: awameg/flatris:latest
+    image: awameg/flatris:multi-arch
     hostname: flatris
     ports:
       - 3000:3000

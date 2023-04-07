@@ -1,4 +1,4 @@
-version: "3.2"
+version: "3.8"
 
 services:
   
@@ -17,6 +17,6 @@ services:
   nginx:
     build: ./nginx
     ports:
-    - 808282:80
+    - 8082:80
     depends_on:
     - flatris
